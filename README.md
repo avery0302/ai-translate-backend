@@ -1,1 +1,1 @@
-"# brower-ai-translate" 
+# brower-ai-translate

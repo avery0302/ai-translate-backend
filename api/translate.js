@@ -1,6 +1,8 @@
 import axios from "axios";
 import "dotenv/config";
 
+console.log("@process.env.OPENROUTER_API_KEY",process.env.OPENROUTER_API_KEY);
+
 export default async function handler(req, res) {
   if (req.method !== "POST") {
     res.setHeader("Allow", "POST");

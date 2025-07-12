@@ -8,11 +8,11 @@ export default async function handler(req, res) {
   res.setHeader("Access-Control-Allow-Methods", "GET,POST,OPTIONS");
   // 允许的请求头
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-
   // 预检请求直接响应
   if (req.method === "OPTIONS") {
     return res.status(204).end();
   }
+
   if (req.method !== "POST") {
     res.setHeader("Allow", "POST");
     return res.status(405).json({ error: `Method ${req.method} Not Allowed` });

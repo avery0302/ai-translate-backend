@@ -1,8 +1,6 @@
 import axios from "axios";
 import "dotenv/config";
 
-console.log("@process.env.OPENROUTER_API_KEY",process.env.OPENROUTER_API_KEY);
-
 export default async function handler(req, res) {
   if (req.method !== "POST") {
     res.setHeader("Allow", "POST");
@@ -19,15 +17,16 @@ export default async function handler(req, res) {
     const response = await axios.post(
       "https://openrouter.ai/api/v1/chat/completions",
       {
-        model: "openai/gpt-4.1-nano",
+        model: "google/gemma-3-4b-it:free", // openai/gpt-4.1-nano
         messages: [
           {
             role: "user",
             content: `“${text}”。
-Translate the above into most common Chinese.
-If the input is a proper noun, brand, or product name, translate it into the commonly used Chinese name.
-As concise as possible.
-Do NOT include pinyin or English explanations.
+Translate the above into the most natural and commonly used version in the other language.
+If it’s English, translate to Chinese.
+If it’s Chinese, translate to English.
+If it’s a brand, product, or proper noun, use the widely accepted version.
+Output only the translated result. Do not include the original text, explanations, pinyin, or formatting.
 `,
           },
         ],

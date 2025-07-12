@@ -18,7 +18,7 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: `Method ${req.method} Not Allowed` });
   }
 
-  const { text } = req.body;
+  const { text, model } = req.body;
 
   if (!text) {
     return res.status(400).json({ error: "Missing 'text' in request body" });
@@ -28,7 +28,7 @@ export default async function handler(req, res) {
     const response = await axios.post(
       "https://openrouter.ai/api/v1/chat/completions",
       {
-        model: "google/gemma-3-4b-it:free", // openai/gpt-4.1-nano
+        model,
         messages: [
           {
             role: "user",

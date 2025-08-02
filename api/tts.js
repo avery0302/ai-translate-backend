@@ -34,11 +34,11 @@ export default async function handler(req, res) {
   }
 }
 
-async function tts(text) {
+async function tts(text, langCode, langName) {
   const url = `https://texttospeech.googleapis.com/v1/text:synthesize?key=${process.env.GOOGLE_API_KEY}`;
   const body = {
     input: { text },
-    voice: { languageCode: "en-US", name: "en-US-News-N" },
+    voice: { languageCode: langCode, name: langName },
     audioConfig: { audioEncoding: "MP3" },
   };
 

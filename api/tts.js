@@ -18,14 +18,14 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: `Method ${req.method} Not Allowed` });
   }
 
-  const { text } = req.body;
+  const { text, langCode, langName } = req.body;
 
   if (!text) {
     return res.status(400).json({ error: "Missing 'text' in request body" });
   }
 
   try {
-    const response = await tts(text);
+    const response = await tts(text, langCode, langName);
     const audioBuffer = Buffer.from(response.data.audioContent, "base64");
     res.setHeader("Content-Type", "audio/mpeg");
     res.send(audioBuffer);
